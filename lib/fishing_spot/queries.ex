@@ -51,27 +51,15 @@ defmodule FishingSpot.Queries do
   end
 
   def fisherman_by_keyword do
-    {_, date} = Ecto.Date.cast("1976-01-05")
-
-    Repo.all(
-      from fisherman in Fisherman,
-      where: [name: "Lew", date_of_birth: ^date]
-    )
-
-    where(Fisherman, [name: "Lew", date_of_birth: ^date]) |> Repo.all
-
-    join(Fisherman, :inner, [], fish_landed in FishLanded)
-      |> where([fisherman, fish_landed], [name: "Lew", date_of_birth: ^date, id: fish_landed.fisherman_id])
-      |> Repo.all
-    nil
+    # TODO: Output fishermen whose birthdate is 1976-01-05 and name is Lew
   end
 
-  def fishy_fish_count do
-    Repo.all(
-      from fish in FishLanded,
-      select: count(fish.id),
-      where: fish.length > 24
-    )
+  def fishermen_fish_species_details do
+    # TODO: use join and preload to output names of fishermen and list of all fish species they caught
+  end
+
+  def fishermen_trip_details do
+    # TODO: Find all fishermen who went on fishing trips after 2013
   end
 
   def biggest_fish_per_fisherman do
